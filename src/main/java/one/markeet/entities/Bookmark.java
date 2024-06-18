@@ -32,9 +32,9 @@ public class Bookmark {
         this.profileUrl = profileUrl;
     }
 
-    public boolean isKidFriendly() {
-        return true;
-    }
+//    public boolean isKidFriendly() {
+//        return true;
+//    }
 
     @Override
     public String toString() {

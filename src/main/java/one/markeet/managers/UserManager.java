@@ -3,6 +3,8 @@ package one.markeet.managers;
 import one.markeet.DAOs.UserDAO;
 import one.markeet.entities.User;
 
+import java.util.List;
+
 public class UserManager {
     private static final UserManager instance = new UserManager();
     private final UserDAO userDAO = new UserDAO();
@@ -27,7 +29,7 @@ public class UserManager {
         return user;
     }
 
-    public User[] getUsers() {
+    public List<User> getUsers() {
         return userDAO.getUsers();
     }
 }

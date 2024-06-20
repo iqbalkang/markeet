@@ -4,8 +4,10 @@ import one.markeet.DataStore;
 import one.markeet.entities.Bookmark;
 import one.markeet.entities.UserBookmark;
 
+import java.util.List;
+
 public class BookmarkDAO {
-    public Bookmark[][] getBookmarks() {
+    public List<List<Bookmark>> getBookmarks() {
         return DataStore.getBookmarks();
     }
 

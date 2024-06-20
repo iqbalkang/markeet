@@ -1,8 +1,12 @@
 package one.markeet.entities;
 
+import one.markeet.constants.BookGenre;
+import one.markeet.partner.Shareable;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Arrays;
 
-public class Book extends Bookmark{
+public class Book extends Bookmark implements Shareable {
     private int releaseYear;
 
     private double amazonRating;
@@ -52,6 +56,12 @@ public class Book extends Bookmark{
     }
 
     @Override
+    public boolean isKidFriendly() {
+        if(genre.equals(BookGenre.ROMANCE) || genre.equals(BookGenre.PHILOSOPHY)) return false;
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "Book{" +
                 "releaseYear=" + releaseYear +
@@ -60,5 +70,20 @@ public class Book extends Bookmark{
                 ", authors=" + Arrays.toString(authors) +
                 ", genre='" + genre + '\'' +
                 "} " + super.toString();
+    }
+
+    @Override
+    public String getItemData() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("<item>");
+            builder.append("<type> book </type>");
+            builder.append("<title>").append(getTitle()).append("</title>");
+            builder.append("<publication>").append(publication).append("</publication>");
+            builder.append("<amazonRating>").append(amazonRating).append("</amazonRating>");
+            builder.append("<releaseYear>").append(StringUtils.join(authors, ",")).append("</releaseYear>");
+            builder.append("<genre>").append(genre).append("</genre>");
+        builder.append("</item>");
+
+        return builder.toString();
     }
 }

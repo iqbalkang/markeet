@@ -6,10 +6,11 @@ import one.markeet.managers.BookmarkManager;
 import one.markeet.managers.UserManager;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Launch {
-    private static User[] users;
-    private static Bookmark[][] bookmarks;
+    private static List<User> users;
+    private static List<List<Bookmark>> bookmarks;
 
     private static void loadData() {
 //        System.out.println("1. Loading data...");
@@ -28,7 +29,7 @@ public class Launch {
     }
 
     private static void printBookmarks() {
-        for(Bookmark[] bookmarkList : bookmarks)
+        for(List<Bookmark> bookmarkList : bookmarks)
             for(Bookmark bookmark : bookmarkList)
                 System.out.println(bookmark);
     }

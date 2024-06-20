@@ -1,5 +1,7 @@
 package one.markeet.entities;
 
+import one.markeet.constants.MovieGenre;
+
 import java.util.Arrays;
 
 public class Movie extends Bookmark {
@@ -49,6 +51,12 @@ public class Movie extends Bookmark {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    @Override
+    public boolean isKidFriendly() {
+        if(genre.equals(MovieGenre.THRILLER) || genre.equals(MovieGenre.HORROR)) return false;
+        return true;
     }
 
     @Override

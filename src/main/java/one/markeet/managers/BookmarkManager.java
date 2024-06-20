@@ -4,6 +4,8 @@ import one.markeet.DAOs.BookmarkDAO;
 import one.markeet.DataStore;
 import one.markeet.entities.*;
 
+import java.util.List;
+
 public class BookmarkManager {
     private static final BookmarkManager instance = new BookmarkManager();
     private final BookmarkDAO bookmarkDAO = new BookmarkDAO();
@@ -53,7 +55,7 @@ public class BookmarkManager {
         return webLink;
     }
 
-    public Bookmark[][] getBookmarks() {
+    public List<List<Bookmark>> getBookmarks() {
         return bookmarkDAO.getBookmarks();
     }
 
@@ -66,4 +68,19 @@ public class BookmarkManager {
     }
 
 
+    public void setKidFriendlyStatus(User user, String kidFriendlyStatusDecision, Bookmark bookmark) {
+        bookmark.setKidFriendlyStatus(kidFriendlyStatusDecision);
+        bookmark.setKidFriendlyMarkedBy(user);
+        System.out.println("kid friendly status: " + kidFriendlyStatusDecision + " " + bookmark);
+    }
+
+    public void share(User user, Bookmark bookmark) {
+        bookmark.setSharedBy(user);
+
+        if(bookmark instanceof Book book)
+            System.out.println(book.getItemData());
+        else if (bookmark instanceof WebLink webLink)
+            System.out.println(webLink.getItemData());
+
+    }
 }

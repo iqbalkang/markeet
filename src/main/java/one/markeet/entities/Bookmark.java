@@ -2,11 +2,37 @@ package one.markeet.entities;
 
 import one.markeet.constants.KidFriendlyStatus;
 
-public class Bookmark {
+public abstract class Bookmark {
     private long id;
     private String title;
     private String profileUrl;
-    private String kidFriendly = KidFriendlyStatus.UNKNOWN;
+    private String kidFriendlyStatus = KidFriendlyStatus.UNKNOWN;
+    private User kidFriendlyMarkedBy;
+    private User sharedBy;
+
+    public User getSharedBy() {
+        return sharedBy;
+    }
+
+    public void setSharedBy(User sharedBy) {
+        this.sharedBy = sharedBy;
+    }
+
+    public User getKidFriendlyMarkedBy() {
+        return kidFriendlyMarkedBy;
+    }
+
+    public void setKidFriendlyMarkedBy(User kidFriendlyMarkedBy) {
+        this.kidFriendlyMarkedBy = kidFriendlyMarkedBy;
+    }
+
+    public String getKidFriendlyStatus() {
+        return kidFriendlyStatus;
+    }
+
+    public void setKidFriendlyStatus(String kidFriendlyStatus) {
+        this.kidFriendlyStatus = kidFriendlyStatus;
+    }
 
     public long getId() {
         return id;
@@ -32,9 +58,7 @@ public class Bookmark {
         this.profileUrl = profileUrl;
     }
 
-//    public boolean isKidFriendly() {
-//        return true;
-//    }
+    public abstract boolean isKidFriendly();
 
     @Override
     public String toString() {
@@ -42,6 +66,9 @@ public class Bookmark {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", profileUrl='" + profileUrl + '\'' +
+                ", kidFriendlyStatus='" + kidFriendlyStatus + '\'' +
+                ", kidFriendlyMarkedBy=" + kidFriendlyMarkedBy +
+                ", sharedBy=" + sharedBy +
                 '}';
     }
 }
